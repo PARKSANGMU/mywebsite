@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>mywebsite</title>
 <link rel="stylesheet" href="resources/css/main.css">
 </head>
 <body>
-	<div class="wrapper">
+<div class="wrapper">
 	<div class="wrap">
 		<div class="top_area">
 			<div class="login_area">
-				<div class="login_button"><a href="/member/login">·Î±×ÀÎ</a></div>
-				<span><a href="/member/join">È¸¿ø°¡ÀÔ</a></span>
+				<div class="login_button"><a href="/member/login">ë¡œê·¸ì¸</a></div>
+				<span><a href="/member/join">íšŒì›ê°€ìž…</a></span>
 			</div>
 			<div class="clearfix"></div>			
 		</div>

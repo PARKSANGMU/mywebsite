@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+	/* 중복아이디 존재하지 않는경우 */
+	.id_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+	.id_input_re_2{
+		color : red;
+		display : none;
+	}
+	
+	/* 메일 인증번호 전송 버튼 */
+	.mail_chk_button{
+    cursor: pointer;
+	}
+	
+	/* 이메일 전송이 완료되었을 때 색상 변경 */
+	#mail_chk_input_box_false{
+    	background-color:#ebebe4;
+	}
+	 
+	#mail_chk_input_box_true{
+	    background-color:white;
+	}
+	
+	/* 인증번호의 일치 여부에 따라 span태그의 글 색상 변경 */
+	.correct{
+    	color : green;
+	}
+	.incorrect{
+	    color : red;
+	}

@@ -2,24 +2,27 @@ package com.mywebsite.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mywebsite.service.MainService;
 
 /**
- * @name       :
+ * @name       : 메인 컨트롤러
  * @Author     : 박상무
  * @date       : 2022. 1. 14. 오전 11:16:56
  * @class      : MainController.java
  * 
  */
-@RestController
-@RequestMapping("/mywebsite")
+@Controller
+@RequestMapping("/")
 public class MainController {
-
-	private MainService mainService;
+	
+	@Autowired
+	MainService mainService;
+	
 	private static final Log log = LogFactory.getLog(MainController.class);
 	
 	/**
@@ -31,7 +34,7 @@ public class MainController {
 	 * @returnType : void
 	 * 
 	 */
-	@GetMapping("/main")
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public void main() {
 		
 	}
