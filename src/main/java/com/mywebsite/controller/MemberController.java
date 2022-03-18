@@ -120,7 +120,7 @@ public class MemberController{
 	 */
 	@RequestMapping(value = "/mailChk", method = RequestMethod.GET)
 	@ResponseBody
-	public String mailChkGET(String userMail) {
+	public String mailChkGET(String userMail){
 		/* 뷰(View)로부터 넘어온 데이터 확인 */
         log.info("이메일 데이터 전송 확인");
         log.info("인증번호 : " + userMail);

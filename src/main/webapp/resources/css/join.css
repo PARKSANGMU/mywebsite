@@ -17,11 +17,11 @@
 	}
 	
 	/* 이메일 전송이 완료되었을 때 색상 변경 */
-	#mail_chk_input_box_false{
+	#mail_chk_input_false{
     	background-color:#ebebe4;
 	}
 	 
-	#mail_chk_input_box_true{
+	#mail_chk_input_true{
 	    background-color:white;
 	}
 	
@@ -32,3 +32,33 @@
 	.incorrect{
 	    color : red;
 	}
+	
+	/* 유효성 검사 문구 */
+	.final_id_chk{
+		display:none;
+	}
+	.final_pw_chk{
+		display:none;
+	}
+	.final_pwChk_chk{
+		display:none;
+	}
+	.final_name_chk{
+		display:none;
+	}
+	.final_mail_chk{
+		display:none;
+	}
+	.final_addr_chk{
+		display:none;
+	}
+	
+	/* 비밀번호 확인 일치 유효성검사 */
+	.pwck_input_re_1{
+	    color : green;
+	    display : none;    
+	}
+	.pwck_input_re_2{
+        color : red;
+        display : none;    
+}  
