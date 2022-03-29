@@ -34,13 +34,32 @@ public class MemberMapperTests {
 //		
 //	}
 	
+	// 아이디 중복확인 테스트 메서드
+//	@Test
+//	public void userIdChk() {
+//		String id = "admin";	// 존재하는 아이디
+//		String id2 = "test123";	// 존재하지 않는 아이디
+//		
+//		membermapper.idCheck(id);
+//		membermapper.idCheck(id2);
+//	}
+	
+	// 로그인 쿼리 mapper 테스트 메서드
 	@Test
-	public void userIdChk() {
-		String id = "admin";	// 존재하는 아이디
-		String id2 = "test123";	// 존재하지 않는 아이디
+	public void login() throws Exception{
 		
-		membermapper.idCheck(id);
-		membermapper.idCheck(id2);
+		UserDTO userDTO = new UserDTO();	// UserDTO 변수 선언 및 초기화
+		
+		/* 올바른 아이디 비번 입력 경우 */
+		userDTO.setUserId("tkdan13");
+		userDTO.setUserPw("123564");
+		
+		/* 틀린 아이디 비번 입력 경우 */
+//		userDTO.setUserId("test");
+//		userDTO.setUserPw("test");
+		
+		membermapper.login(userDTO);
+		System.out.println("결과 값 : " + membermapper.login(userDTO));
 	}
 	
 }

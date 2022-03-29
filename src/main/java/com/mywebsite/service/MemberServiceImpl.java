@@ -6,6 +6,13 @@ import org.springframework.stereotype.Service;
 import com.mywebsite.dto.UserDTO;
 import com.mywebsite.mapper.MemberMapper;
 
+/**
+ * @name       : 회원관리 ServiceImpl
+ * @Author     : 박상무
+ * @date       : 2022. 3. 18. 오후 4:50:18
+ * @class      : MemberServiceImpl.java
+ * 
+ */
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -23,4 +30,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return membermapper.idCheck(userId);
 	}
+
+	// 로그인
+	public UserDTO login(UserDTO dto) {
+		return membermapper.login(dto);
+	}
+	
+	
+	
 }

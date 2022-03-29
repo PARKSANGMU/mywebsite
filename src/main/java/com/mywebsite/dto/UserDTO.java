@@ -28,4 +28,5 @@ public class UserDTO {
 	private String userAddr2;	// 회원 주소
 	private String userAddr3;	// 회원 상세주소
 	private Date regDate;		// 등록일자
+	private int adminCK;		// 관리자 구분(0:일반사용자, 1:관리자)
 }
