@@ -49,24 +49,61 @@
 			</ul>
 		</div>
 		<div class="top_area">
-		<div class="login_area">
-			<!-- 로그인 하지 않은 상태 -->
-			<c:if test = "${dto == null}">
-				<div class="login_button"><a href="/member/login">로그인</a></div>
-					<span><a href="/member/join">회원가입</a></span>
-			</c:if>
-			<!-- 로그인한 상태 -->
-			<c:if test = "${dto != null}">
-				<div class="login_success_area">
-					<span>회원 : ${dto.userName}</span>
-					<a href="/member/logout">로그아웃</a>
+			<div class="logo_area">
+				<a href="/main"><img src="/resources/img/logo.png"></a>
+			</div>
+			<div class="login_area">
+				<!-- 로그인 하지 않은 상태 -->
+				<c:if test = "${dto == null}">
+					<div class="login_button"><a href="/member/login">로그인</a></div>
+						<span><a href="/member/join">회원가입</a></span>
+				</c:if>
+				<!-- 로그인한 상태 -->
+				<c:if test = "${dto != null}">
+					<div class="login_success_area">
+						<span>회원 : ${dto.userName}</span>
+						<a href="/member/logout">로그아웃</a>
+					</div>
+				</c:if>
+			</div>
+			<div class="clearfix"></div>			
+		</div>
+		<!-- Footer 영역 -->
+		<div class="footer_nav">
+			<div class="footer_nav_container">
+				<ul>
+					<li>회사소개</li>
+					<span class="line">|</span>
+					<li>이용약관</li>
+					<span class="line">|</span>
+					<li>고객센터</li>
+					<span class="line">|</span>
+					<li>광고문의</li>
+					<span class="line">|</span>
+					<li>채용정보</li>
+					<span class="line">|</span>
+				</ul>
+			</div>
+		</div> <!-- class="footer_nav" -->
+		<div class="footer">
+			<div class="footer_container">
+				<div class="footer_left">
+					<img src="resources/img/logo.png">
 				</div>
-			</c:if>
-		</div>
-		<div class="clearfix"></div>			
-		</div>
-	</div>
-</div>
+				<div class="footer_right">
+					(주) MyWebsite 대표이사 : 박상무
+					<br>
+					대표전화 : 010-5642-3493(발신자 부담 전화)
+					<br>
+					<br>
+					COPYRIGHT(C) <Strong>sangmu.mywebsite.com</Strong> ALL RIGHTS RESERVED.
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div> <!-- class="footer" -->
+	</div> <!-- class="wrap" -->
+</div> <!--  class="wrapper -->
+
 
 <script>
 	
