@@ -1,4 +1,4 @@
-package com.mywebsite.dto;
+package com.mywebsite.model;
 
 import java.sql.Date;
 
@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class UserDTO {
+public class UserVO {
 
 	private String userId;		// 회원 ID
 	private String userPw;		// 회원 비밀번호

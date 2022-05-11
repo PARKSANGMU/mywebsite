@@ -1,6 +1,6 @@
 package com.mywebsite.service;
 
-import com.mywebsite.dto.UserDTO;
+import com.mywebsite.model.UserVO;
 
 /**
  * @name       : 회원관리 Service
@@ -12,11 +12,11 @@ import com.mywebsite.dto.UserDTO;
 public interface MemberService  {
 
 	// 회원가입
-	public void joinPost(UserDTO dto);
+	public void joinPost(UserVO user);
 	
 	// 아이디 중복 검사
 	public int idCheck(String userId);
 	
 	// 로그인
-	public UserDTO login(UserDTO dto);
+	public UserVO login(UserVO user);
 }

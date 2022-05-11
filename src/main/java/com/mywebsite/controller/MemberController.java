@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mywebsite.dto.UserDTO;
+import com.mywebsite.model.UserVO;
 import com.mywebsite.service.MemberService;
 
 
@@ -68,23 +68,23 @@ public class MemberController{
 	 * 
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPost(HttpServletRequest request, UserDTO dto, RedirectAttributes rttr) throws Exception{
+	public String loginPost(HttpServletRequest request, UserVO user, RedirectAttributes rttr) throws Exception{
 		
 		HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
 		
-		UserDTO userDTO = service.login(dto);		// 제출한 아이디와 일치하는 아이디있는지 확인
+		UserVO userVO = service.login(user);		// 제출한 아이디와 일치하는 아이디있는지 확인
 		
-		if(userDTO != null) {		// 일치하는 아이디 존재시
+		if(userVO != null) {		// 일치하는 아이디 존재시
 			
-			rawPw = dto.getUserPw();			 // 사용자가 제출한 비밀번호
-			encodePw = userDTO.getUserPw();		 // 데이터베이스에 저장한 인코딩된 비밀번호
+			rawPw = user.getUserPw();			 // 사용자가 제출한 비밀번호
+			encodePw = userVO.getUserPw();		 // 데이터베이스에 저장한 인코딩된 비밀번호
 			
 			if(true == pwEncoder.matches(rawPw, encodePw)) {	// 비밀번호 일치여부 판단
 				
-				userDTO.setUserPw("");				 	// 인코딩된 비밀번호 정보 지움
-				session.setAttribute("dto", userDTO);	// session에 사용자의 정보 저장
+				userVO.setUserPw("");				 	// 인코딩된 비밀번호 정보 지움
+				session.setAttribute("user", userVO);	// session에 사용자의 정보 저장
 				return "redirect:/main";		// 메인페이지 이동
 				
 			}else {
@@ -163,17 +163,17 @@ public class MemberController{
 	 * 
 	 */
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinPost(UserDTO dto) {
+	public String joinPost(UserVO user) {
 		
 		String rawPw = "";					// 인코딩 전 비밀번호
 		String encodePw = "";				// 인코딩 후 비밀번호
 		
-		rawPw = dto.getUserPw();			// 비밀번호 데이터 얻음
+		rawPw = user.getUserPw();			// 비밀번호 데이터 얻음
 		encodePw = pwEncoder.encode(rawPw); // 비밀번호 인코딩
-		dto.setUserPw(encodePw);			// 인코딩된 비밀번호 dto객체에 다시 저장
+		user.setUserPw(encodePw);			// 인코딩된 비밀번호 dto객체에 다시 저장
 		
 		// 회원가입 서비스 실행
-		service.joinPost(dto);
+		service.joinPost(user);
 		
 		return "redirect:/main";
 	}

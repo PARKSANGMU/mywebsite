@@ -3,8 +3,8 @@ package com.mywebsite.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mywebsite.dto.UserDTO;
 import com.mywebsite.mapper.MemberMapper;
+import com.mywebsite.model.UserVO;
 
 /**
  * @name       : 회원관리 ServiceImpl
@@ -20,9 +20,9 @@ public class MemberServiceImpl implements MemberService{
 	MemberMapper membermapper;
 	
 	// 회원가입 
-	public void joinPost(UserDTO dto) {
+	public void joinPost(UserVO user) {
 		
-		membermapper.joinPost(dto);
+		membermapper.joinPost(user);
 	}
 	
 	// 아이디 중복 확인
@@ -32,8 +32,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	// 로그인
-	public UserDTO login(UserDTO dto) {
-		return membermapper.login(dto);
+	public UserVO login(UserVO user) {
+		return membermapper.login(user);
 	}
 	
 	

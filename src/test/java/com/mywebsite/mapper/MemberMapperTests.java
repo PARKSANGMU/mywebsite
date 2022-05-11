@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.mywebsite.dto.UserDTO;
+import com.mywebsite.model.UserVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -18,7 +18,7 @@ public class MemberMapperTests {
 	//회원가입 쿼리 테스트 메서드
 //	@Test
 //	public void joinPost() throws Exception{
-//		UserDTO user = new UserDTO();
+//		UserVO user = new UserVO();
 //		
 //		user.setUserId("tkdan13");
 //		user.setUserPw("s1234");
@@ -48,18 +48,18 @@ public class MemberMapperTests {
 	@Test
 	public void login() throws Exception{
 		
-		UserDTO userDTO = new UserDTO();	// UserDTO 변수 선언 및 초기화
+		UserVO user = new UserVO();	// UserVO 변수 선언 및 초기화
 		
 		/* 올바른 아이디 비번 입력 경우 */
-		userDTO.setUserId("tkdan13");
-		userDTO.setUserPw("123564");
+		user.setUserId("tkdan13");
+		user.setUserPw("123564");
 		
 		/* 틀린 아이디 비번 입력 경우 */
-//		userDTO.setUserId("test");
-//		userDTO.setUserPw("test");
+//		user.setUserId("test");
+//		user.setUserPw("test");
 		
-		membermapper.login(userDTO);
-		System.out.println("결과 값 : " + membermapper.login(userDTO));
+		membermapper.login(user);
+		System.out.println("결과 값 : " + membermapper.login(user));
 	}
 	
 }

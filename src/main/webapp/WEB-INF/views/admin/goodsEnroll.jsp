@@ -11,6 +11,7 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 </head>
 </head>
 <body>
@@ -54,50 +55,116 @@
                 </div>
                 <div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>상품 등록</span></div>
-                </div>
+                    <div class="admin_content_main">
+                    	<form action="/admin/goodsEnroll" method="post" id="enrollForm">
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 이름</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<input name="goodsName">
+                    			</div>
+                    		</div>
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 카테고리</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<input name="cateCode">
+                    			</div>
+                    		</div>
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 가격</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<input name="goodsPrice">
+                    			</div>
+                    		</div>
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 재고</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<input name="goodsStock">
+                    			</div>
+                    		</div>
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 할인률</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<input name="goodsDiscount">
+                    			</div>
+                    		</div>
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 소개</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<textarea name="goodsIntro" id="goodsIntro_textarea"></textarea>
+                    			</div>
+                    		</div>
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 내용</label>
+                    			</div>
+                    			<div class="form_section_content">
+                    				<textarea name="goodsContents" id="goodsContents_textarea"></textarea>
+                    			</div>
+                    		</div>
+                    	</form>
+                    	<div class="btn_section">
+                    		<button id="cancleBtn" class="cancle_btn">취소</button>
+                    		<button id="enrollBtn" class="enroll_btn">등록</button>
+                    	</div>
+                    </div> <!-- class="admin_content_main" -->
+                </div> <!-- class="admin_content_wrap" -->
                 <div class="clearfix"></div>
             </div>
-        
-        <!-- Footer 영역 -->
-        <div class="footer_nav">
-            <div class="footer_nav_container">
-                <ul>
-                    <li>회사소개</li>
-                    <span class="line">|</span>
-                    <li>이용약관</li>
-                    <span class="line">|</span>
-                    <li>고객센터</li>
-                    <span class="line">|</span>
-                    <li>광고문의</li>
-                    <span class="line">|</span>
-                    <li>채용정보</li>
-                    <span class="line">|</span>
-                </ul>
-            </div>
-        </div> <!-- class="footer_nav" -->
-        
-        <div class="footer">
-            <div class="footer_container">
-                
-                <div class="footer_left">
-                    <img src="../resources/img/logo.png">
-                </div>
-                <div class="footer_right">
-                    (주) MyWebsite    대표이사 : 박상무
-                    <br>
-                    사업자등록번호 : ooo-oo-ooooo
-                    <br>
-                    대표전화 : 010-5642-3493(발신자 부담전화)
-                    <br>
-                    <br>
-                    COPYRIGHT(C) <strong>sangmu.mywebsite.com</strong>    ALL RIGHTS RESERVED.
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div> <!-- class="footer" -->        
-        
     </div>    <!-- class="wrap" -->
 </div>    <!-- class="wrapper" -->
+ 
+<script>
+
+let enrollForm = $("#enrollForm")
+
+/* 위지윅 적용 */
+	/* 상품 소개 */
+	ClassicEditor
+		.create(document.querySelector('#goodsIntro_textarea'))
+		.catch(error=>{
+			console.error(error);
+		});
+	/* 상품 내용 */	
+	ClassicEditor
+	.create(document.querySelector('#goodsContents_textarea'))
+	.catch(error=>{
+		console.error(error);
+	});
+	
+/* 취소 버튼 */
+$("#cancleBtn").click(function(){
+	
+	location.href="/admin/goodsManage"
+	
+});
+
+/* 등록 버튼 */
+$("#enrollBtn").click(function(e){
+	
+	e.preventDefault();
+	
+	enrollForm.submit();
+	
+});	
+
+/* 카테고리 리스트 */
+$(document).ready(function(){
+	console.log('${cateList}');
+});
+	
+</script>
  
 </body>
 </html>

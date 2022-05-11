@@ -2,7 +2,7 @@ package com.mywebsite.mapper;
 
 import org.springframework.stereotype.Repository;
 
-import com.mywebsite.dto.UserDTO;
+import com.mywebsite.model.UserVO;
 
 /**
  * @name       : 회원 관리 Mapper
@@ -15,11 +15,11 @@ import com.mywebsite.dto.UserDTO;
 public interface MemberMapper {
 	
 	// 회원가입
-	public void joinPost(UserDTO dto);
+	public void joinPost(UserVO user);
 	
 	// 아이디 중복확인
 	public int idCheck(String userId);
 	
 	// 로그인
-	public UserDTO login(UserDTO dto);
+	public UserVO login(UserVO user);
 }

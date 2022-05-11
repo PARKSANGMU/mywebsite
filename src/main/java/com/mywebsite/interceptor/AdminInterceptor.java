@@ -4,10 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.mywebsite.dto.UserDTO;
+import com.mywebsite.model.UserVO;
 
 /**
  * @name       : 관리자페이지 인터셉터
@@ -33,7 +32,7 @@ public class AdminInterceptor implements HandlerInterceptor{
 		
 		HttpSession session = request.getSession();
 		
-		UserDTO userDto = (UserDTO)session.getAttribute("dto");
+		UserVO userDto = (UserVO)session.getAttribute("user");
 		
 		if(userDto == null || userDto.getAdminCK() == 0) {	// 관리자 계정이 아닌 경우
 			

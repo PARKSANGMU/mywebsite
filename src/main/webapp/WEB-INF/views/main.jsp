@@ -19,7 +19,7 @@
 	<div class="wrap">
 		<div class="top_gnb_area">
 			<ul class="list">
-				<c:if test = "${dto == null}">		<!-- 로그인 X -->
+				<c:if test = "${user == null}">		<!-- 로그인 X -->
 					<li>
 						<a href="/member/login">로그인</a>
 					</li>
@@ -27,8 +27,8 @@
 						<a href="/member/join">회원가입</a>
 					</li>
 				</c:if>
-				<c:if test = "${dto != null}">		<!-- 로그인 O -->
-					<c:if test = "${dto.adminCK == 1}">	<!-- 관리자 계정 -->
+				<c:if test = "${user != null}">		<!-- 로그인 O -->
+					<c:if test = "${user.adminCK == 1}">	<!-- 관리자 계정 -->
 						<li>
 							<a href="/admin/main">관리자 페이지</a>
 						</li>
@@ -54,14 +54,14 @@
 			</div>
 			<div class="login_area">
 				<!-- 로그인 하지 않은 상태 -->
-				<c:if test = "${dto == null}">
+				<c:if test = "${user == null}">
 					<div class="login_button"><a href="/member/login">로그인</a></div>
 						<span><a href="/member/join">회원가입</a></span>
 				</c:if>
 				<!-- 로그인한 상태 -->
-				<c:if test = "${dto != null}">
+				<c:if test = "${user != null}">
 					<div class="login_success_area">
-						<span>회원 : ${dto.userName}</span>
+						<span>회원 : ${user.userName}</span>
 						<a href="/member/logout">로그아웃</a>
 					</div>
 				</c:if>
