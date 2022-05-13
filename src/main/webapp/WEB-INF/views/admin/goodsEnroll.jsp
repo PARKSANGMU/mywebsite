@@ -63,6 +63,7 @@
                     			</div>
                     			<div class="form_section_content">
                     				<input name="goodsName">
+                    				<span class="ck_warn goodsName_warn">상품 이름을 입력해주세요.</span>
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -70,7 +71,25 @@
                     				<label>상품 카테고리</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="cateCode">
+                    				<div class="cate_wrap">
+                    					<span>대분류</span>
+                    					<select class="cate1">
+                    						<option selected value="none">선택</option>
+                    					</select>
+                    				</div>
+                    				<div class="cate_wrap">
+                    					<span>중분류</span>
+                    					<select class="cate2">
+                    						<option selected value="none">선택</option>
+                    					</select>
+                    				</div>
+                    				<div class="cate_wrap">
+                    					<span>소분류</span>
+                    					<select class="cate3" name="cateCode">
+                    						<option selected value="none">선택</option>
+                    					</select>
+                    				</div>
+                    				<span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span>
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -79,6 +98,7 @@
                     			</div>
                     			<div class="form_section_content">
                     				<input name="goodsPrice">
+                    				<span class="ck_warn goodsPrice_warn">상품 가격을 입력해주세요.</span>
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -87,6 +107,7 @@
                     			</div>
                     			<div class="form_section_content">
                     				<input name="goodsStock">
+                    				<span class="ck_warn goodsStock_warn">상품 재고를 입력해주세요.</span>
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -95,6 +116,7 @@
                     			</div>
                     			<div class="form_section_content">
                     				<input name="goodsDiscount">
+                    				<span class="ck_warn goodsDiscount_warn">상품할인률을 입력해주세요.</span>
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -103,6 +125,7 @@
                     			</div>
                     			<div class="form_section_content">
                     				<textarea name="goodsIntro" id="goodsIntro_textarea"></textarea>
+                    				<span class="ck_warn goodsIntro_warn">상품 소개를 입력해주세요.</span>
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -111,6 +134,7 @@
                     			</div>
                     			<div class="form_section_content">
                     				<textarea name="goodsContents" id="goodsContents_textarea"></textarea>
+                    				<span class="ck_warn goodsContents_warn">상품 내용을 입력해주세요.</span>
                     			</div>
                     		</div>
                     	</form>
@@ -155,15 +179,167 @@ $("#enrollBtn").click(function(e){
 	
 	e.preventDefault();
 	
-	enrollForm.submit();
+	/* 체크 변수 */
+	let goodsNameCk = false;
+	let cateCodeCk = false;
+	let goodsPriceCk = false;
+	let goodsStockCk = false;
+	let goodsDiscountCk = false;
+	let goodsIntroCk = false;
+	let goodsContentsCk = false;
+	
+	/* 체크 대상 변수 */
+	let goodsName = $("input[name='goodsName']").val();
+	let cateCode = $("select[name='cateCode']").val();
+	let goodsPrice = $("input[name='goodsPrice']").val();
+	let goodsStock = $("input[name='goodsStock']").val();
+	let goodsDiscount = $("input[name='goodsDiscount']").val();
+	let goodsIntro = $(".bit p").html();
+	let goodsContents = $(".bct p").html();
+	
+	/* 공란 체크 */
+	if(goodsName){
+		$(".goodsName_warn").css('display','none');
+		goodsNameCk = true;
+	} else {
+		$(".goodsName_warn").css('display','block');
+		goodsNameCk = false;
+	}
+	
+	if(cateCode != 'none'){
+		$(".cateCode_warn").css('display','none');
+		cateCodeCk = true;
+	} else {
+		$(".cateCode_warn").css('display','block');
+		cateCodeCk = false;
+	}	
+	
+	if(goodsPrice != 0){
+		$(".goodsPrice_warn").css('display','none');
+		goodsPriceCk = true;
+	} else {
+		$(".goodsPrice_warn").css('display','block');
+		goodsPriceCk = false;
+	}	
+	
+	if(goodsStock != 0){
+		$(".goodsStock_warn").css('display','none');
+		goodsStockCk = true;
+	} else {
+		$(".goodsStock_warn").css('display','block');
+		goodsStockCk = false;
+	}		
+	
+	if(goodsDiscount < 1 && goodsDiscount != ''){
+		$(".goodsDiscount_warn").css('display','none');
+		goodsDiscountCk = true;
+	} else {
+		$(".goodsDiscount_warn").css('display','block');
+		goodsDiscountCk = false;
+	}	
+	
+	if(goodsIntro != '<br data-cke-filler="true">'){
+		$(".goodsIntro_warn").css('display','none');
+		goodsIntroCk = true;
+	} else {
+		$(".goodsIntro_warn").css('display','block');
+		goodsIntroCk = false;
+	}	
+	
+	if(goodsContents != '<br data-cke-filler="true">'){
+		$(".goodsContents_warn").css('display','none');
+		goodsContentsCk = true;
+	} else {
+		$(".goodsContents_warn").css('display','block');
+		goodsContentsCk = false;
+	}	
+	
+	if(goodsNameCk && cateCodeCk && goodsPriceCk && goodsStockCk && goodsDiscountCk && goodsIntroCk && goodsContentsCk ){
+		//alert('통과');
+		enrollForm.submit();
+	} else {
+		return false;
+	}
 	
 });	
 
 /* 카테고리 리스트 */
-$(document).ready(function(){
-	console.log('${cateList}');
-});
+let cateList = JSON.parse('${cateList}');
+
+let cate1Array = new Array();
+let cate2Array = new Array();
+let cate3Array = new Array();
+let cate1Obj = new Object();
+let cate2Obj = new Object();
+let cate3Obj = new Object();
+
+let cateSelect1 = $(".cate1");		
+let cateSelect2 = $(".cate2");
+let cateSelect3 = $(".cate3");
+
+/* 카테고리 배열 초기화 메서드 */
+function makeCateArray(obj, array, cateList, tier){
+	for(let i = 0; i < cateList.length; i++){
+		if(cateList[i].tier === tier){
+			obj = new Object();
+			
+			obj.cateName = cateList[i].cateName;
+			obj.cateCode = cateList[i].cateCode;
+			obj.cateParent = cateList[i].cateParent;
+			
+			array.push(obj);				
+			
+		}
+	}
+}
+
+/* 배열 초기화 */
+makeCateArray(cate1Obj,cate1Array,cateList,1);
+makeCateArray(cate2Obj,cate2Array,cateList,2);
+makeCateArray(cate3Obj,cate3Array,cateList,3);
+
+/* 대분류 <option> 태그 */
+for(let i = 0; i < cate1Array.length; i++){
+	cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
+}
+
+/* 중분류 <option> 태그 */
+$(cateSelect1).on("change",function(){
 	
+	let selectVal1 = $(this).find("option:selected").val();	
+	
+	cateSelect2.children().remove();
+	cateSelect3.children().remove();
+	
+	cateSelect2.append("<option value='none'>선택</option>");
+	cateSelect3.append("<option value='none'>선택</option>");
+	
+	for(let i = 0; i < cate2Array.length; i++){
+		if(selectVal1 === cate2Array[i].cateParent){
+			cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");	
+		}
+	}// for
+	
+});
+
+/* 소분류 <option>태그 */
+$(cateSelect2).on("change",function(){
+	
+	let selectVal2 = $(this).find("option:selected").val();
+	
+	cateSelect3.children().remove();
+	
+	cateSelect3.append("<option value='none'>선택</option>");		
+	
+	for(let i = 0; i < cate3Array.length; i++){
+		if(selectVal2 === cate3Array[i].cateParent){
+			cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");	
+		}
+	}// for		
+	
+});
+
+
 </script>
  
 </body>
