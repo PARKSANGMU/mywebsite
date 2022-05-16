@@ -17,6 +17,8 @@ public class GoodsVO {
 	private String goodsName;
 	/* 카테고리 코드 */
 	private String cateCode;
+	/* 카테고리 이름 */
+	private String cateName;
 	/* 상품 가격 */
 	private int goodsPrice;
 	/* 상품 재고 */
@@ -50,6 +52,12 @@ public class GoodsVO {
 	}
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
+	}
+	public String getCateName() {
+		return cateName;
+	}
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
 	}
 	public int getGoodsPrice() {
 		return goodsPrice;
@@ -96,10 +104,10 @@ public class GoodsVO {
 	
 	@Override
 	public String toString() {
-		return "goodsDTO [goodsId=" + goodsId + ", goodsName=" + goodsName + ", cateCode=" + cateCode + ", goodsPrice="
-				+ goodsPrice + ", goodsStock=" + goodsStock + ", goodsDiscount=" + goodsDiscount + ", goodsIntro="
-				+ goodsIntro + ", goodsContents=" + goodsContents + ", regDate=" + regDate + ", updateDate="
-				+ updateDate + "]";
+		return "GoodsVO [goodsId=" + goodsId + ", goodsName=" + goodsName + ", cateCode=" + cateCode + ", cateName="
+				+ cateName + ", goodsPrice=" + goodsPrice + ", goodsStock=" + goodsStock + ", goodsDiscount="
+				+ goodsDiscount + ", goodsIntro=" + goodsIntro + ", goodsContents=" + goodsContents + ", regDate="
+				+ regDate + ", updateDate=" + updateDate + "]";
 	}
 	
 }

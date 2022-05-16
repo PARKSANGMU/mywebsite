@@ -15,44 +15,8 @@
 </head>
 </head>
 <body>
- 
-    <div class="wrapper">
-        <div class="wrap">
-            <!-- gnv_area -->    
-            <div class="top_gnb_area">
-                <ul class="list">    
-                    <li><a href="/main">메인 페이지</a></li>
-                    <li><a href="/member/logout">로그아웃</a></li>
-                    <li>고객센터</li>            
-                </ul>
-            </div>
-            <!-- top_subject_area -->
-            <div class="admin_top_wrap">
-                <span>관리자 페이지</span>
-                
-            </div>
-            <!-- contents-area -->
-            <div class="admin_wrap">
-                <!-- 네비영역 -->
-                <div class="admin_navi_wrap">
-                  <ul>
-                      <li >
-                          <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
-                      </li>
-                      <li>
-                          <a class="admin_list_02" href="/admin/goodsManage">상품 관리</a>
-                      </li>
-                      <lI>
-                          <a class="admin_list_03" >미정</a>                            
-                      </lI>
-                      <lI>
-                          <a class="admin_list_04" >미정</a>                            
-                      </lI>
-                      <lI>
-                          <a class="admin_list_05">회원 관리</a>                            
-                      </lI>                                                                                             
-                  </ul>
-                </div>
+   				<%@include file="../includes/admin/header.jsp" %>
+   				
                 <div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>상품 등록</span></div>
                     <div class="admin_content_main">
@@ -89,7 +53,7 @@
                     						<option selected value="none">선택</option>
                     					</select>
                     				</div>
-                    				<span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span>
+                    				<span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span> 
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -115,8 +79,10 @@
                     				<label>상품 할인률</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="goodsDiscount">
-                    				<span class="ck_warn goodsDiscount_warn">상품할인률을 입력해주세요.</span>
+                    				<input id="discount_interface" maxlength="2" value="0">
+                    				<input name="goodsDiscount" type="hidden" value="0">
+                    				<span class="step_val">할인가격 : <span class="span_discount"></span></span>
+                    				<span class="ck_warn goodsDiscount_warn">1~99 숫자를 입력해주세요.</span>
                     			</div>
                     		</div>
                     		<div class="form_section">
@@ -144,10 +110,9 @@
                     	</div>
                     </div> <!-- class="admin_content_main" -->
                 </div> <!-- class="admin_content_wrap" -->
-                <div class="clearfix"></div>
-            </div>
-    </div>    <!-- class="wrap" -->
-</div>    <!-- class="wrapper" -->
+            </div> <!-- class="admin_wrap" -->
+ 			
+ 			<%@include file="../includes/admin/footer.jsp" %>
  
 <script>
 
@@ -193,7 +158,7 @@ $("#enrollBtn").click(function(e){
 	let cateCode = $("select[name='cateCode']").val();
 	let goodsPrice = $("input[name='goodsPrice']").val();
 	let goodsStock = $("input[name='goodsStock']").val();
-	let goodsDiscount = $("input[name='goodsDiscount']").val();
+	let goodsDiscount = $("#discount_interface").val();
 	let goodsIntro = $(".bit p").html();
 	let goodsContents = $(".bct p").html();
 	
@@ -230,7 +195,7 @@ $("#enrollBtn").click(function(e){
 		goodsStockCk = false;
 	}		
 	
-	if(goodsDiscount < 1 && goodsDiscount != ''){
+	if(!isNaN(goodsDiscount)){
 		$(".goodsDiscount_warn").css('display','none');
 		goodsDiscountCk = true;
 	} else {
@@ -336,6 +301,39 @@ $(cateSelect2).on("change",function(){
 			cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");	
 		}
 	}// for		
+});
+
+/* 할인률 Input 설정 */
+$("#discount_interface").on("propertychange change keyup paste input", function(){
+	
+	let userInput = $("#discount_interface");
+	let discountInput = $("input[name='goodsDiscount']");
+	
+	let discountRate = userInput.val();							// 사용자가 입력할 할인값
+	let sendDiscountRate = discountRate / 100;  				// 서버에 전송할 할인값
+	let goodsPrice = $("input[name='goodsPrice']").val();		// 원가
+	let discountPrice = goodsPrice * (1 - sendDiscountRate);	// 할인가격
+	
+	if(!isNaN(discountRate)){
+		$(".span_discount").html(discountPrice);
+		discountInput.val(sendDiscountRate);
+	}
+	
+});
+
+$("input[name='goodsPrice']").on("change", function(){
+	
+	let userInput = $("#discount_interface");
+	let discountInput = $("input[name='goodsDiscount']");
+	
+	let discountRate = userInput.val();							// 사용자가 입력한 할인값
+	let sendDiscountRate = discountRate / 100;					// 서버에 전송할 할인값
+	let goodsPrice = $("input[name='goodsPrice']").val();		// 원가
+	let discountPrice = goodsPrice * (1 - sendDiscountRate);	// 할인가격
+	
+	if(!isNaN(discountRate)){
+		$(".span_discount").html(discountPrice);
+	}
 	
 });
 

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mywebsite.model.Criteria;
 import com.mywebsite.model.GoodsVO;
+import com.mywebsite.model.PageDTO;
 import com.mywebsite.service.AdminService;
 
 /**
@@ -97,8 +99,21 @@ public class AdminController {
 	 * 
 	 */
 	@RequestMapping(value = "/goodsManage", method = RequestMethod.GET)
-	public void goodsManageGET() {
+	public void goodsManageGET(Criteria cri, Model model) throws Exception{
 		
+		/* 상품 리스트 데이터 */
+		List list = adminService.goodsGetList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+		}else {
+			model.addAttribute("listCheck", "empty");
+			return;
+		}
+		
+		/* 페이지 인터페이스 데이터 */
+		model.addAttribute("pageMaker", new PageDTO(cri, adminService.goodsGetTotal(cri)));
 	}
+	
 	
 }

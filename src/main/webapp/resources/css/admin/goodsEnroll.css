@@ -95,8 +95,7 @@ ul{
 .admin_content_wrap{
     width: 80%;
     float:left;
-    height: 100%;
-    height: 700px;
+    min-height: 700px;
     
 }
 /* 관리자 컨텐츠 제목 영역 */
@@ -182,7 +181,6 @@ ul{
 .cate_wrap:not(:first-child) {
     margin-top: 20px;
 }
-
 /* 입력란 공란 경고 태그 */
 .ck_warn{						
 	display: none;
@@ -190,6 +188,13 @@ ul{
     text-align: center;
     color: #e05757;
     font-weight: 300;    
+}
+
+/* 할인 가격 문구 */
+.step_val{						
+	display: block;
+    padding-top: 5px;
+    font-weight: 500;
 }
  
 /* float 속성 해제 */

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mywebsite.mapper.AdminMapper;
 import com.mywebsite.model.CateVO;
+import com.mywebsite.model.Criteria;
 import com.mywebsite.model.GoodsVO;
 
 /**
@@ -37,5 +38,19 @@ public class AdminServiceImpl implements AdminService{
 		
 	}
 	
+	/* 상품 리스트 */
+	@Override
+	public List<GoodsVO> goodsGetList(Criteria cri) {
+		
+		return mapper.goodsGetList(cri);
+		
+	}
+
+	/* 상품 총 개수 */
+	public int goodsGetTotal(Criteria cri) {
+		
+		return mapper.goodsGetTotal(cri);
+		
+	}	
 
 }
